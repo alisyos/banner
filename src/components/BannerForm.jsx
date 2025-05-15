@@ -4,10 +4,10 @@ import { useDropzone } from 'react-dropzone';
 const BannerForm = ({ onGenerate, isLoading }) => {
   const [form, setForm] = useState({
     size: '1024x1024',
-    fileSize: '1MB',
     target: '',
     text: '',
     fileFormat: 'url',
+    fileSize: '1MB',
     additionalRequirements: ''
   });
   
@@ -79,37 +79,6 @@ const BannerForm = ({ onGenerate, isLoading }) => {
             <option value="1024x1792">1024x1792 (세로형)</option>
             <option value="1792x1024">1792x1024 (가로형)</option>
           </select>
-        </div>
-        
-        <div className="form-group">
-          <label htmlFor="fileFormat" className="form-label">
-            파일 형식
-          </label>
-          <select
-            id="fileFormat"
-            name="fileFormat"
-            value={form.fileFormat}
-            onChange={handleChange}
-            className="form-control"
-          >
-            <option value="url">URL</option>
-            <option value="b64_json">Base64</option>
-          </select>
-        </div>
-        
-        <div className="form-group">
-          <label htmlFor="fileSize" className="form-label">
-            파일 크기 제한
-          </label>
-          <input
-            type="text"
-            id="fileSize"
-            name="fileSize"
-            value={form.fileSize}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="예: 1MB"
-          />
         </div>
         
         <div className="form-group">
