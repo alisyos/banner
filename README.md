@@ -1,6 +1,6 @@
 # AI 배너 이미지 생성기
 
-OpenAI의 DALL-E 3 API를 활용한, 맞춤형 광고 배너 이미지 생성 웹 애플리케이션입니다.
+GPT 이미지 생성 모델을 활용한, 맞춤형 광고 배너 이미지 생성 웹 애플리케이션입니다.
 
 ## 주요 기능
 
@@ -43,11 +43,24 @@ npm run dev
 
 브라우저에서 [http://localhost:3000](http://localhost:3000)으로 접속하여 애플리케이션을 사용할 수 있습니다.
 
+## Render.com 배포 방법
+
+1. [Render.com](https://render.com/) 계정에 로그인합니다.
+2. 대시보드에서 "New +" 버튼을 클릭하고 "Web Service"를 선택합니다.
+3. 저장소를 연결하거나 프로젝트를 업로드합니다.
+4. 다음 설정을 입력합니다:
+   - Name: ai-banner-generator (또는 원하는 이름)
+   - Environment: Node
+   - Build Command: `npm install && npm run build`
+   - Start Command: `npm start`
+5. "Environment Variables" 섹션에서 `OPENAI_API_KEY`를 추가합니다.
+6. "Create Web Service" 버튼을 클릭하여 배포를 시작합니다.
+
 ## 기술 스택
 
 - [Next.js](https://nextjs.org/) - React 프레임워크
 - [React](https://reactjs.org/) - 사용자 인터페이스 라이브러리
-- [OpenAI API](https://openai.com/) - DALL-E 3 이미지 생성 API
+- [OpenAI API](https://openai.com/) - GPT 이미지 생성 API
 - [Tailwind CSS](https://tailwindcss.com/) - 스타일링
 - [React Dropzone](https://react-dropzone.js.org/) - 파일 업로드 처리
 
