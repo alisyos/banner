@@ -11,7 +11,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-export async function POST(req: Request) {
+export async function POST(req) {
   try {
     console.log('API 요청 받음');
     const body = await req.json();
@@ -141,7 +141,7 @@ ${additionalRequirements ? `* 추가 요청사항: ${additionalRequirements}` : 
         imageResponse = await openai.images.generate({
           model: "gpt-image-1",
           prompt: prompt,
-          size: size as any,
+          size: size,
           quality: "high",
           output_format: fileFormat || "png"
         });
@@ -152,7 +152,7 @@ ${additionalRequirements ? `* 추가 요청사항: ${additionalRequirements}` : 
       imageResponse = await openai.images.generate({
         model: "gpt-image-1",
         prompt: prompt,
-        size: size as any,
+        size: size,
         quality: "high",
         output_format: fileFormat || "png"
       });

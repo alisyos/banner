@@ -1,12 +1,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-type BannerPreviewProps = {
-  imageUrl?: string;
-  imageBase64?: string;
-};
-
-const BannerPreview = ({ imageUrl, imageBase64 }: BannerPreviewProps) => {
+const BannerPreview = ({ imageUrl, imageBase64 }) => {
   const [copied, setCopied] = useState(false);
 
   // 이미지가 없을 경우

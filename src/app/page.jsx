@@ -6,21 +6,18 @@ import BannerPreview from '../components/BannerPreview';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
-  const [bannerData, setBannerData] = useState<{
-    url?: string;
-    b64_json?: string;
-  } | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [bannerData, setBannerData] = useState(null);
+  const [error, setError] = useState(null);
 
   // 파일을 Base64로 변환하는 함수
-  const fileToBase64 = (file: File): Promise<string> => {
+  const fileToBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
         if (typeof reader.result === 'string') {
           // data:image/jpeg;base64, 부분 제거
-          const base64 = reader.result.split(',')[1];
+          const base64 = reader.result;
           resolve(base64);
         } else {
           reject(new Error('파일 인코딩 실패'));
@@ -30,13 +27,13 @@ export default function Home() {
     });
   };
 
-  const handleGenerateBanner = async (formData: FormData) => {
+  const handleGenerateBanner = async (formData) => {
     setIsLoading(true);
     setError(null);
     
     try {
       // 폼 데이터를 JSON으로 변환
-      const jsonData: Record<string, any> = {};
+      const jsonData = {};
       formData.forEach((value, key) => {
         if (key !== 'logoImage' && key !== 'productImage') {
           jsonData[key] = value;
@@ -44,8 +41,8 @@ export default function Home() {
       });
       
       // 이미지 파일 처리
-      const logoImage = formData.get('logoImage') as File;
-      const productImage = formData.get('productImage') as File;
+      const logoImage = formData.get('logoImage');
+      const productImage = formData.get('productImage');
       
       // 로고 이미지 변환
       if (logoImage && logoImage.size > 0) {
@@ -92,7 +89,7 @@ export default function Home() {
     } catch (err) {
       console.error('Error generating banner:', err);
       setError(typeof err === 'object' && err !== null && 'message' in err
-        ? (err as Error).message
+        ? err.message
         : '알 수 없는 오류가 발생했습니다.');
     } finally {
       setIsLoading(false);
@@ -167,4 +164,4 @@ export default function Home() {
       </footer>
     </div>
   );
-}
+} 

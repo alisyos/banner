@@ -1,12 +1,7 @@
 import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-type BannerFormProps = {
-  onGenerate: (formData: FormData) => void;
-  isLoading: boolean;
-};
-
-const BannerForm = ({ onGenerate, isLoading }: BannerFormProps) => {
+const BannerForm = ({ onGenerate, isLoading }) => {
   const [form, setForm] = useState({
     size: '1024x1024',
     fileSize: '1MB',
@@ -16,10 +11,10 @@ const BannerForm = ({ onGenerate, isLoading }: BannerFormProps) => {
     additionalRequirements: ''
   });
   
-  const [logoImage, setLogoImage] = useState<File | null>(null);
-  const [productImage, setProductImage] = useState<File | null>(null);
+  const [logoImage, setLogoImage] = useState(null);
+  const [productImage, setProductImage] = useState(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
   };
@@ -44,7 +39,7 @@ const BannerForm = ({ onGenerate, isLoading }: BannerFormProps) => {
     }
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
     
