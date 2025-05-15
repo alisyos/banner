@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "SKIP_TYPE_CHECK=true next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -22,6 +22,8 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.1.0",
-    "postcss": "^8.4.35"
+    "postcss": "^8.4.35",
+    "typescript": "^5.4.2",
+    "@types/react": "^18.2.61"
   }
 }
