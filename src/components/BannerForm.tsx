@@ -66,10 +66,10 @@ const BannerForm = ({ onGenerate, isLoading }: BannerFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <label htmlFor="size" className="block text-sm font-medium text-gray-700">
+    <form onSubmit={handleSubmit} style={{marginBottom: 0}}>
+      <div className="form-grid">
+        <div className="form-group">
+          <label htmlFor="size" className="form-label">
             이미지 크기
           </label>
           <select
@@ -77,7 +77,7 @@ const BannerForm = ({ onGenerate, isLoading }: BannerFormProps) => {
             name="size"
             value={form.size}
             onChange={handleChange}
-            className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            className="form-control"
             required
           >
             <option value="1024x1024">1024x1024 (정사각형)</option>
@@ -86,8 +86,8 @@ const BannerForm = ({ onGenerate, isLoading }: BannerFormProps) => {
           </select>
         </div>
         
-        <div>
-          <label htmlFor="fileFormat" className="block text-sm font-medium text-gray-700">
+        <div className="form-group">
+          <label htmlFor="fileFormat" className="form-label">
             파일 형식
           </label>
           <select
@@ -95,15 +95,15 @@ const BannerForm = ({ onGenerate, isLoading }: BannerFormProps) => {
             name="fileFormat"
             value={form.fileFormat}
             onChange={handleChange}
-            className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            className="form-control"
           >
             <option value="url">URL</option>
             <option value="b64_json">Base64</option>
           </select>
         </div>
         
-        <div>
-          <label htmlFor="fileSize" className="block text-sm font-medium text-gray-700">
+        <div className="form-group">
+          <label htmlFor="fileSize" className="form-label">
             파일 크기 제한
           </label>
           <input
@@ -112,13 +112,13 @@ const BannerForm = ({ onGenerate, isLoading }: BannerFormProps) => {
             name="fileSize"
             value={form.fileSize}
             onChange={handleChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            className="form-control"
             placeholder="예: 1MB"
           />
         </div>
         
-        <div>
-          <label htmlFor="target" className="block text-sm font-medium text-gray-700">
+        <div className="form-group">
+          <label htmlFor="target" className="form-label">
             타겟 고객층
           </label>
           <input
@@ -127,15 +127,15 @@ const BannerForm = ({ onGenerate, isLoading }: BannerFormProps) => {
             name="target"
             value={form.target}
             onChange={handleChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            className="form-control"
             placeholder="예: 20-30대 여성"
             required
           />
         </div>
       </div>
       
-      <div>
-        <label htmlFor="text" className="block text-sm font-medium text-gray-700">
+      <div className="form-group">
+        <label htmlFor="text" className="form-label">
           배너 문구
         </label>
         <textarea
@@ -144,14 +144,14 @@ const BannerForm = ({ onGenerate, isLoading }: BannerFormProps) => {
           value={form.text}
           onChange={handleChange}
           rows={3}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+          className="form-control"
           placeholder="배너에 포함할 문구를 입력하세요"
           required
         />
       </div>
       
-      <div>
-        <label htmlFor="additionalRequirements" className="block text-sm font-medium text-gray-700">
+      <div className="form-group">
+        <label htmlFor="additionalRequirements" className="form-label">
           추가 요청사항
         </label>
         <textarea
@@ -160,64 +160,79 @@ const BannerForm = ({ onGenerate, isLoading }: BannerFormProps) => {
           value={form.additionalRequirements}
           onChange={handleChange}
           rows={4}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+          className="form-control"
           placeholder="배너 디자인에 대한 추가 요청사항이나 원하는 스타일, 색상, 분위기 등을 자유롭게 입력해주세요"
         />
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
+      <div className="form-grid">
+        <div className="form-group">
+          <label className="form-label">
             브랜드 로고 이미지
           </label>
           <div 
             {...logoDropzone.getRootProps()} 
-            className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer hover:bg-gray-50"
+            className="dropzone"
           >
-            <div className="space-y-1 text-center">
-              <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <div className="dropzone-content">
+              <svg className="dropzone-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
               </svg>
               <input {...logoDropzone.getInputProps()} />
               {logoImage ? (
-                <p className="text-sm text-gray-500">{logoImage.name}</p>
+                <p style={{fontWeight: 500, color: '#4338ca'}}>{logoImage.name}</p>
               ) : (
-                <p className="text-sm text-gray-500">로고 이미지를 드래그하거나 클릭하여 업로드하세요</p>
+                <div>
+                  <p style={{fontWeight: 500, color: '#4f46e5', fontSize: '0.875rem'}}>로고 이미지 업로드</p>
+                  <p style={{color: '#6b7280', fontSize: '0.75rem'}}>드래그 앤 드롭 또는 클릭</p>
+                </div>
               )}
             </div>
           </div>
         </div>
         
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
+        <div className="form-group">
+          <label className="form-label">
             제품 이미지
           </label>
           <div 
             {...productDropzone.getRootProps()} 
-            className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer hover:bg-gray-50"
+            className="dropzone"
           >
-            <div className="space-y-1 text-center">
-              <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <div className="dropzone-content">
+              <svg className="dropzone-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
               </svg>
               <input {...productDropzone.getInputProps()} />
               {productImage ? (
-                <p className="text-sm text-gray-500">{productImage.name}</p>
+                <p style={{fontWeight: 500, color: '#4338ca'}}>{productImage.name}</p>
               ) : (
-                <p className="text-sm text-gray-500">제품 이미지를 드래그하거나 클릭하여 업로드하세요</p>
+                <div>
+                  <p style={{fontWeight: 500, color: '#4f46e5', fontSize: '0.875rem'}}>제품 이미지 업로드</p>
+                  <p style={{color: '#6b7280', fontSize: '0.75rem'}}>드래그 앤 드롭 또는 클릭</p>
+                </div>
               )}
             </div>
           </div>
         </div>
       </div>
       
-      <div className="pt-4">
+      <div className="form-group" style={{marginTop: '1.5rem', marginBottom: 0}}>
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+          className="btn btn-primary btn-block"
+          style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'}}
         >
-          {isLoading ? '생성 중...' : '배너 생성하기'}
+          {isLoading ? (
+            <>
+              <svg className="spinner" style={{width: '1.25rem', height: '1.25rem'}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle style={{opacity: '0.25'}} cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path style={{opacity: '0.75'}} fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              배너 생성 중...
+            </>
+          ) : '배너 생성하기'}
         </button>
       </div>
     </form>

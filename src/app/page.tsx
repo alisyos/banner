@@ -100,39 +100,71 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-6 sm:p-12 md:p-24">
-      <div className="w-full max-w-5xl">
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold mb-2">AI 배너 이미지 생성기</h1>
-          <p className="text-gray-600">
+    <div className="min-h-screen">
+      {/* 헤더 */}
+      <header>
+        <div className="container">
+          <h1>AI 배너 이미지 생성기</h1>
+          <p>
             GPT 이미지 생성 모델을 활용하여 맞춤형 광고 배너를 생성해 드립니다.
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <h2 className="text-xl font-semibold mb-4">배너 설정</h2>
-            <BannerForm 
-              onGenerate={handleGenerateBanner} 
-              isLoading={isLoading} 
-            />
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <h2 className="text-xl font-semibold mb-4">생성된 배너</h2>
-            {error ? (
-              <div className="p-4 bg-red-50 border border-red-200 rounded-md text-red-600">
-                {error}
+      </header>
+
+      {/* 메인 컨텐츠 */}
+      <main>
+        <div className="container">
+          <div className="grid">
+            <div className="card">
+              <div className="card-header">
+                <h2>배너 설정</h2>
               </div>
-            ) : (
-              <BannerPreview 
-                imageUrl={bannerData?.url} 
-                imageBase64={bannerData?.b64_json} 
-              />
-            )}
+              <div className="card-body">
+                <BannerForm 
+                  onGenerate={handleGenerateBanner} 
+                  isLoading={isLoading} 
+                />
+              </div>
+            </div>
+            
+            <div className="card">
+              <div className="card-header">
+                <h2>생성된 배너</h2>
+              </div>
+              <div className="card-body">
+                {error ? (
+                  <div style={{
+                    padding: '1rem',
+                    backgroundColor: '#fef2f2',
+                    border: '1px solid #fee2e2',
+                    borderRadius: '0.5rem',
+                    color: '#b91c1c'
+                  }}>
+                    <p style={{display: 'flex', alignItems: 'center'}}>
+                      <svg xmlns="http://www.w3.org/2000/svg" style={{width: '1.25rem', height: '1.25rem', marginRight: '0.5rem'}} viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                      </svg>
+                      {error}
+                    </p>
+                  </div>
+                ) : (
+                  <BannerPreview 
+                    imageUrl={bannerData?.url} 
+                    imageBase64={bannerData?.b64_json} 
+                  />
+                )}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+
+      {/* 푸터 */}
+      <footer>
+        <div className="container">
+          <p>© {new Date().getFullYear()} AI 배너 이미지 생성기. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
   );
 }

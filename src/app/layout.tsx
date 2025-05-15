@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const notoSansKr = Noto_Sans_KR({ 
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-noto-sans-kr" 
+});
 
 export const metadata: Metadata = {
   title: "AI 배너 이미지 생성기",
@@ -15,8 +19,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className={inter.className}>{children}</body>
+    <html lang="ko" className="h-full">
+      <body className={`${notoSansKr.variable} font-sans min-h-full bg-gradient-to-br from-gray-50 to-blue-50`}>
+        {children}
+      </body>
     </html>
   );
 }
